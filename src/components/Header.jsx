@@ -7,12 +7,13 @@ const navItems = [
   { id: "about", label: "О Ssmart", path: "/#about" },
   { id: "products", label: "Продукция", path: "/#products" },
   { id: "support", label: "Гарантия и сервис", path: "/#support" },
-  { id: "contact", label: "Контакты", path: "/contact" }, // separate route
+  { id: "contact", label: "Контакты", path: "/contact" },
 ];
 
 export default function Header() {
   const [isSticky, setSticky] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -20,13 +21,10 @@ export default function Header() {
     const handleScroll = () => {
       setSticky(window.scrollY > 50);
 
-      // Only track active section if on homepage
       if (location.pathname === "/") {
-        let currentSection = "hero"; // default
+        let currentSection = "hero";
         for (const { id } of navItems) {
-          // Skip contact since it is a separate page
           if (id === "contact") continue;
-
           const section = document.getElementById(id);
           if (section) {
             const rect = section.getBoundingClientRect();
@@ -38,7 +36,6 @@ export default function Header() {
         }
         setActiveSection(currentSection);
       } else {
-        // If on contact page, no active section in header
         setActiveSection(null);
       }
     };
@@ -49,14 +46,22 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname]);
 
+  // Lock scroll on mobile when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [menuOpen]);
+
   const scrollOrNavigate = (item) => {
+    setMenuOpen(false);
+
     if (item.path === "/contact") {
-      // Navigate to contact page
       navigate("/contact");
     } else if (location.pathname !== "/") {
-      // If not on homepage, navigate to homepage first, then scroll
       navigate("/", { replace: false });
-      // Delay scroll after navigation
       setTimeout(() => {
         const section = document.getElementById(item.id);
         if (section) {
@@ -64,7 +69,6 @@ export default function Header() {
         }
       }, 100);
     } else {
-      // If on homepage, scroll normally
       const section = document.getElementById(item.id);
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
@@ -74,7 +78,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition shadow-2xl ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all shadow-2xl ${
         isSticky ? "bg-neutral-950/60 backdrop-blur-sm" : "bg-black/80"
       }`}
     >
@@ -87,7 +91,8 @@ export default function Header() {
             <img className="w-32" src={Logo} alt="logo" />
           </div>
 
-          <ul className="hidden md:flex space-x-6 font-bold text-md light-font">
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex space-x-6 font-bold text-md">
             {navItems.map(({ id, label, path }) => (
               <li
                 key={id}
@@ -102,7 +107,52 @@ export default function Header() {
               </li>
             ))}
           </ul>
+
+          {/* Mobile Toggle */}
+          <div
+            className="md:hidden flex items-center cursor-pointer"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <svg
+              className="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {menuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </div>
         </nav>
+
+        {/* Mobile Menu Dropdown */}
+        {menuOpen && (
+          <ul className="md:hidden flex flex-col items-center bg-black/90 fixed w-full left-0 top-[82px] py-6 space-y-4 z-40 shadow-lg">
+            {navItems.map(({ id, label, path }) => (
+              <li
+                key={id}
+                className="text-white font-semibold text-lg"
+                onClick={() => scrollOrNavigate({ id, path })}
+              >
+                {label}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </header>
   );

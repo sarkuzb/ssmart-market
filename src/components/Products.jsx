@@ -40,11 +40,11 @@ export default function Products() {
     responsive: [
       {
         breakpoint: 1024,
-        settings: { slidesToShow: 2 },
+        settings: { slidesToShow: 2, slidesToScroll: 1 },
       },
       {
         breakpoint: 640,
-        settings: { slidesToShow: 1 },
+        settings: { slidesToShow: 1, slidesToScroll: 1 },
       },
     ],
   };
@@ -53,11 +53,11 @@ export default function Products() {
     <div className="bg-neutral-950 py-20">
       <section
         id="products"
-        className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ease-out transform ${
+        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ease-out transform ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
-        <h2 className="text-3xl font-semibold text-white mb-12 text-center tracking-wide all-texts">
+        <h2 className="text-3xl sm:text-4xl font-semibold text-white mb-12 text-center tracking-wide all-texts">
           продукции Ssmart
         </h2>
         <Slider {...settings}>
@@ -74,25 +74,25 @@ export default function Products() {
               voiceControlNote,
             }) => (
               <div key={id} className="px-2">
-                <div className="bg-neutral-900 flex flex-col h-[34rem] hover:rounded-xl transition-all duration-200 overflow-hidden">
-                  <div className="bg-neutral-800 p-2">
+                <div className="bg-neutral-900 flex flex-col h-auto sm:h-[30rem] hover:rounded-xl transition-all duration-200 overflow-hidden shadow-lg">
+                  <div className="bg-neutral-800 p-2 sm:p-4">
                     <img
                       src={image}
                       alt={`Телевизор Ssmart ${size}`}
-                      className="w-full h-48 object-cover hover:scale-105 transition-all duration-300"
+                      className="w-full h-40 sm:h-52 md:h-56 lg:h-60 object-cover hover:scale-105 transition-all duration-300 rounded-md"
                       loading="lazy"
                     />
                   </div>
-                  <div className="p-6 flex flex-col flex-grow">
+                  <div className="p-4 sm:p-6 flex flex-col flex-grow">
                     <h3
-                      className="text-xl font-semibold text-white mb-3 truncate"
+                      className="text-lg sm:text-xl font-semibold text-white mb-3 truncate"
                       title={size}
                     >
                       {size}
                     </h3>
                     <ul
-                      className="text-neutral-300 flex-grow space-y-2"
-                      style={{ minHeight: "140px" }}
+                      className="text-neutral-300 flex-grow space-y-1 sm:space-y-2"
+                      style={{ minHeight: "130px" }}
                     >
                       <li
                         className="flex items-center gap-2"
@@ -100,11 +100,13 @@ export default function Products() {
                       >
                         <Icon
                           icon={resolutionIcon}
-                          className="text-xl text-neutral-500"
+                          className="text-lg sm:text-xl text-neutral-500"
                         />
                         <span>
                           <span className="font-medium">Разрешение:</span>{" "}
-                          <span className="text-sm">{resolution}</span>
+                          <span className="text-xs sm:text-sm">
+                            {resolution}
+                          </span>
                         </span>
                       </li>
                       <li
@@ -113,18 +115,19 @@ export default function Products() {
                       >
                         <Icon
                           icon={osIcon}
-                          className="text-xl text-neutral-500"
+                          className="text-lg sm:text-xl text-neutral-500"
                         />
                         <span>
-                          <span className="font-medium">ОС:</span> {os}
+                          <span className="font-medium">ОС:</span>{" "}
+                          <span className="text-xs sm:text-sm">{os}</span>
                         </span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Icon
                           icon={voiceControl ? checkIcon : closeIcon}
-                          className="text-xl text-neutral-500"
+                          className="text-lg sm:text-xl text-neutral-500"
                         />
-                        <span>
+                        <span className="text-xs sm:text-sm">
                           <span className="font-medium">
                             Голосовое управление:
                           </span>{" "}
@@ -143,9 +146,9 @@ export default function Products() {
                       >
                         <Icon
                           icon={brightnessIcon}
-                          className="text-xl text-neutral-500"
+                          className="text-lg sm:text-xl text-neutral-500"
                         />
-                        <span>
+                        <span className="text-xs sm:text-sm">
                           <span className="font-medium">Яркость:</span>{" "}
                           {brightness}
                         </span>
@@ -156,16 +159,16 @@ export default function Products() {
                       >
                         <Icon
                           icon={contrastIcon}
-                          className="text-xl text-neutral-500"
+                          className="text-lg sm:text-xl text-neutral-500"
                         />
-                        <span>
+                        <span className="text-xs sm:text-sm">
                           <span className="font-medium">Контраст:</span>{" "}
                           {contrast}
                         </span>
                       </li>
                     </ul>
                     <button
-                      className="mt-6 bg-neutral-400 text-neutral-950 font-semibold py-2 rounded-lg hover:bg-white transition cursor-pointer"
+                      className="mt-4 sm:mt-6 bg-neutral-400 text-neutral-950 font-semibold py-2 rounded-lg hover:bg-white transition cursor-pointer text-sm sm:text-base"
                       type="button"
                       style={{ flexShrink: 0 }}
                     >
