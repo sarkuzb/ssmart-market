@@ -40,7 +40,7 @@ export default function Hero() {
           <div className="text-white">
             <h1
               id="hero-title"
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-neutral-300 light-font leading-tight"
+              className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl text-neutral-300 light-font leading-tight"
             >
               Новая эра умного телевидения
             </h1>
