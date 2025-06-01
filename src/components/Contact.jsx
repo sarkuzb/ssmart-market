@@ -62,7 +62,7 @@ export default function Contact() {
               href="mailto:info@ssmartelectronics.com"
               className="text-neutral-300 hover:underline hover:text-rose-500 transition-colors text-2xl"
             >
-              info@ssmartelectronics.com
+              example@gmail.com
             </a>
           </div>
 
@@ -74,7 +74,7 @@ export default function Contact() {
               href="mailto:nelin.p@ssmartelectronics.com"
               className="text-neutral-300 hover:underline block hover:text-rose-500 transition-colors text-2xl"
             >
-              nelin.p@ssmartelectronics.com
+              example@gmail.com
             </a>
           </div>
           <div>
@@ -83,13 +83,13 @@ export default function Contact() {
               href="tel:+998971063353"
               className="hover:underline block text-neutral-300 hover:text-rose-500 transition-colors text-2xl"
             >
-              +998 97 106-33-53
+              +000 00 000 00 00
             </a>
             <a
               href="tel:+79936361766"
               className="hover:underline block text-neutral-300 hover:text-rose-500 transition-colors text-2xl"
             >
-              +7 (993) 636-17-66
+              +000 00 000 00 00
             </a>
           </div>
 
@@ -101,7 +101,7 @@ export default function Contact() {
               href="mailto:servis@ssmartelectronics.com"
               className="text-neutral-300 hover:underline hover:text-rose-500 transition-colors text-2xl"
             >
-              servis@ssmartelectronics.com
+              servis@example.com
             </a>
           </div>
         </div>

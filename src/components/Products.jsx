@@ -34,9 +34,9 @@ export default function Products() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 1200,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     responsive: [
       {
         breakpoint: 1024,
@@ -74,7 +74,7 @@ export default function Products() {
               voiceControlNote,
             }) => (
               <div key={id} className="px-2">
-                <div className="bg-neutral-900 flex flex-col h-[33rem] hover:rounded-xl transition-all duration-200 overflow-hidden">
+                <div className="bg-neutral-900 flex flex-col h-[34rem] hover:rounded-xl transition-all duration-200 overflow-hidden">
                   <div className="bg-neutral-800 p-2">
                     <img
                       src={image}

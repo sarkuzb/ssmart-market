@@ -17,3 +17,8 @@
 .light-font {
   font-family: Thins;
 }
+
+::selection {
+  background-color: #1b1b1b6b; /* Change to your preferred highlight color */
+  color: rgb(255, 255, 255); /* Text color of the selection */
+}
