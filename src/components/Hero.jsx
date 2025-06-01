@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import BG from "../assets/FIRSTBG.jpg";
+import text from "../assets/TEXT-MAIN.png";
 
 export default function Hero() {
   const ref = useRef();
@@ -23,14 +24,14 @@ export default function Hero() {
 
   return (
     <div
-      style={{
-        backgroundImage: `url(${BG})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: `center ${offsetY * 0.5}px`,
-        transition: "background-position 0.2s ease-out",
-      }}
-      className="bg-neutral-800"
+      // style={{
+      //   backgroundImage: `url(${BG})`,
+      //   backgroundRepeat: "no-repeat",
+      //   backgroundSize: "cover",
+      //   backgroundPosition: `center ${offsetY * 0.5}px`,
+      //   transition: "background-position 0.2s ease-out",
+      // }}
+      className="bg-neutral-800 hero-back"
     >
       <section
         id="hero"
@@ -61,6 +62,11 @@ export default function Hero() {
               <span className="text-rose-500">OS</span> — ваш новый ТВ-формат.
             </p>
           </div>
+          <img
+            className="w-[32rem] absolute bottom-16 right-0"
+            src={text}
+            alt=""
+          />
         </div>
 
         {!visible && (

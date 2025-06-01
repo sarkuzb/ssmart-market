@@ -22,3 +22,14 @@
   background-color: #1b1b1b6b; /* Change to your preferred highlight color */
   color: rgb(255, 255, 255); /* Text color of the selection */
 }
+
+.hero-back {
+  background-image: linear-gradient(
+    to right top,
+    #3d0005,
+    #5b000f,
+    #7b0013,
+    #9b0013,
+    #bc0010
+  );
+}

@@ -60,21 +60,21 @@ export default function Footer() {
           <a
             href="#"
             aria-label="Facebook"
-            className="hover:text-red-600 transition"
+            className="hover:text-red-600 transition-colors duration-300"
           >
             <FaYoutube size={20} />
           </a>
           <a
             href="#"
             aria-label="Instagram"
-            className="hover:text-rose-600 transition"
+            className="hover:text-rose-600 transition-colors duration-300"
           >
             <FaInstagram size={20} />
           </a>
           <a
             href="#"
             aria-label="Telegram"
-            className="hover:text-blue-500 transition"
+            className="hover:text-blue-500 transition-colors duration-300"
           >
             <FaTelegram size={20} />
           </a>
