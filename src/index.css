@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Bebas";
+  src: url(../src/assets/Uni\ Sans\ Heavy.otf);
+}
+
+@font-face {
+  font-family: "Thins";
+  src: url(../src/assets/Uni\ Sans\ Thin.otf);
+}
+
+.all-texts {
+  font-family: Bebas;
+}
+
+.light-font {
+  font-family: Thins;
+}
