@@ -47,20 +47,21 @@ export default function Contact() {
       <section
         id="contact"
         aria-label="Contact us"
-        className={` max-w-7xl mx-auto pt-28 pb-10 rounded transition-opacity duration-1000 ${
+        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 transition-opacity duration-1000 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
-        <h1 className="text-5xl all-texts tracking-wider text-white font-bold mb-10 text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl all-texts tracking-wider text-white font-bold mb-10 text-center">
           Свяжитесь с нами
         </h1>
 
-        <div className="max-w-4xl mx-auto space-y-6 text-neutral-400 light-font">
+        {/* Contact Details */}
+        <div className="max-w-4xl w-full mx-auto space-y-8 text-neutral-400 light-font text-center sm:text-left">
           <div>
             <h2 className="font-semibold text-neutral-600">Общие вопросы</h2>
             <a
               href="mailto:info@ssmartelectronics.com"
-              className="text-neutral-300 hover:underline hover:text-rose-500 transition-colors text-2xl"
+              className="text-neutral-300 hover:underline hover:text-rose-500 transition-colors text-xl sm:text-2xl block"
             >
               example@gmail.com
             </a>
@@ -72,22 +73,23 @@ export default function Contact() {
             </h2>
             <a
               href="mailto:nelin.p@ssmartelectronics.com"
-              className="text-neutral-300 hover:underline block hover:text-rose-500 transition-colors text-2xl"
+              className="text-neutral-300 hover:underline hover:text-rose-500 transition-colors text-xl sm:text-2xl block"
             >
               example@gmail.com
             </a>
           </div>
+
           <div>
-            <h2 className="text-neutral-600">Телефон:</h2>
+            <h2 className="font-semibold text-neutral-600">Телефон:</h2>
             <a
               href="tel:+998971063353"
-              className="hover:underline block text-neutral-300 hover:text-rose-500 transition-colors text-2xl"
+              className="hover:underline block text-neutral-300 hover:text-rose-500 transition-colors text-xl sm:text-2xl"
             >
               +000 00 000 00 00
             </a>
             <a
               href="tel:+79936361766"
-              className="hover:underline block text-neutral-300 hover:text-rose-500 transition-colors text-2xl"
+              className="hover:underline block text-neutral-300 hover:text-rose-500 transition-colors text-xl sm:text-2xl"
             >
               +000 00 000 00 00
             </a>
@@ -99,16 +101,17 @@ export default function Contact() {
             </h2>
             <a
               href="mailto:servis@ssmartelectronics.com"
-              className="text-neutral-300 hover:underline hover:text-rose-500 transition-colors text-2xl"
+              className="text-neutral-300 hover:underline hover:text-rose-500 transition-colors text-xl sm:text-2xl block"
             >
               servis@example.com
             </a>
           </div>
         </div>
 
+        {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="max-w-4xl mx-auto mt-16 space-y-8 text-white text-left"
+          className="max-w-4xl w-full mx-auto mt-16 space-y-8 text-white"
         >
           <div>
             <label htmlFor="name" className="block mb-2 font-medium">
@@ -161,7 +164,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="bg-rose-900 text-white px-8 py-4 rounded hover:bg-rose-700 transition disabled:opacity-50 cursor-pointer"
+            className="bg-rose-900 text-white px-8 py-4 rounded hover:bg-rose-700 transition disabled:opacity-50"
           >
             {status === "loading" ? "Отправка..." : "Отправить"}
           </button>
