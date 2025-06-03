@@ -33,3 +33,7 @@
     #bc0010
   );
 }
+
+.no-select {
+  user-select: none;
+}

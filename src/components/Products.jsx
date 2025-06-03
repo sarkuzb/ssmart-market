@@ -13,8 +13,11 @@ import contrastIcon from "@iconify-icons/heroicons-outline/adjustments-horizonta
 import osIcon from "@iconify-icons/heroicons-outline/device-phone-mobile";
 import resolutionIcon from "@iconify-icons/heroicons-outline/computer-desktop";
 
+import { useNavigate } from "react-router-dom";
+
 export default function Products() {
   const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     function onScroll() {
@@ -51,7 +54,6 @@ export default function Products() {
 
   return (
     <>
-      {/* Slick slider overflow fix */}
       <style>
         {`
           .slick-slide {
@@ -181,6 +183,7 @@ export default function Products() {
                         className="mt-4 sm:mt-6 bg-neutral-400 text-neutral-950 font-semibold py-2 px-4 rounded-lg hover:bg-white transition text-sm sm:text-base"
                         type="button"
                         style={{ flexShrink: 0 }}
+                        onClick={() => navigate("/main-products")}
                       >
                         Подробнее
                       </button>

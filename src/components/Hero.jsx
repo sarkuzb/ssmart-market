@@ -44,7 +44,7 @@ export default function Hero() {
             >
               Новая эра умного телевидения
             </h1>
-            <p className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl all-texts tracking-[0.3rem] sm:tracking-[0.6rem] md:tracking-[1.2rem] leading-none mt-2">
+            <p className="no-select cursor-default text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl all-texts tracking-[0.3rem] sm:tracking-[0.6rem] md:tracking-[1.2rem] leading-none mt-2">
               SSmart
             </p>
             <p className="text-sm sm:text-base md:text-lg text-neutral-300 light-font mt-4 px-4 lg:px-0 max-w-full lg:max-w-xl mx-auto lg:mx-0">

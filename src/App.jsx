@@ -6,6 +6,7 @@ import Support from "./components/Support";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import MainProducts from "./components/MainProducts";
 import "./index.css";
 
 function Home() {
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/main-products" element={<MainProducts />} />
       </Routes>
       <Footer />
     </div>
