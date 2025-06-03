@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import Logo from "../assets/logo.png";
 
 const navItems = [
@@ -14,24 +15,22 @@ export default function Header() {
   const [isSticky, setSticky] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [hoverStyle, setHoverStyle] = useState({
-    left: 0,
-    width: 0,
-    opacity: 0,
-  });
+  const [hoverPos, setHoverPos] = useState(null);
 
   const navigate = useNavigate();
   const location = useLocation();
-  const menuRef = useRef(null);
+  const navRef = useRef(null);
 
   const handleMouseEnter = (e) => {
     const li = e.currentTarget;
-    const { offsetLeft, offsetWidth } = li;
-    setHoverStyle({ left: offsetLeft, width: offsetWidth, opacity: 1 });
+    setHoverPos({
+      left: li.offsetLeft,
+      width: li.offsetWidth,
+    });
   };
 
   const handleMouseLeave = () => {
-    setHoverStyle((prev) => ({ ...prev, opacity: 0 }));
+    setHoverPos(null);
   };
 
   useEffect(() => {
@@ -63,11 +62,7 @@ export default function Header() {
   }, [location.pathname]);
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
+    document.body.classList.toggle("overflow-hidden", menuOpen);
   }, [menuOpen]);
 
   const scrollOrNavigate = (item) => {
@@ -81,11 +76,12 @@ export default function Header() {
           navigate("/", { replace: false });
           setTimeout(() => {
             const section = document.getElementById("products");
-            if (section) section.scrollIntoView({ behavior: "smooth" });
+            section?.scrollIntoView({ behavior: "smooth" });
           }, 100);
         } else {
-          const section = document.getElementById("products");
-          if (section) section.scrollIntoView({ behavior: "smooth" });
+          document
+            .getElementById("products")
+            ?.scrollIntoView({ behavior: "smooth" });
         }
       }
     } else if (item.path === "/contact") {
@@ -94,12 +90,14 @@ export default function Header() {
       if (location.pathname !== "/") {
         navigate("/", { replace: false });
         setTimeout(() => {
-          const section = document.getElementById(item.id);
-          if (section) section.scrollIntoView({ behavior: "smooth" });
+          document
+            .getElementById(item.id)
+            ?.scrollIntoView({ behavior: "smooth" });
         }, 100);
       } else {
-        const section = document.getElementById(item.id);
-        if (section) section.scrollIntoView({ behavior: "smooth" });
+        document
+          .getElementById(item.id)
+          ?.scrollIntoView({ behavior: "smooth" });
       }
     }
   };
@@ -122,19 +120,26 @@ export default function Header() {
           {/* Desktop Menu */}
           <ul
             className="relative hidden md:flex font-bold text-md"
-            ref={menuRef}
+            ref={navRef}
             onMouseLeave={handleMouseLeave}
           >
-            {/* Hover Background Effect */}
-            <span
-              className="absolute top-0 h-full bg-neutral-700/10 rounded-md transition-all duration-300 ease-in-out pointer-events-none"
-              style={{
-                left: hoverStyle.left,
-                width: hoverStyle.width,
-                opacity: hoverStyle.opacity,
-                zIndex: 0,
-              }}
-            />
+            {/* Animated Hover Background with Framer Motion */}
+            {hoverPos && (
+              <motion.div
+                layout
+                layoutId="hover"
+                className="absolute top-0 h-full bg-neutral-700/10 rounded-md pointer-events-none"
+                initial={false}
+                animate={{
+                  left: hoverPos.left,
+                  width: hoverPos.width,
+                  opacity: 1,
+                  transition: { type: "spring", stiffness: 500, damping: 60 },
+                }}
+                exit={{ opacity: 0 }}
+                style={{ zIndex: 0 }}
+              />
+            )}
 
             {navItems.map(({ id, label, path }) => (
               <li
