@@ -58,20 +58,36 @@ export default function Header() {
   const scrollOrNavigate = (item) => {
     setMenuOpen(false);
 
-    if (item.path === "/contact") {
-      navigate("/contact");
-    } else if (location.pathname !== "/") {
-      navigate("/", { replace: false });
-      setTimeout(() => {
-        const section = document.getElementById(item.id);
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
+    if (item.id === "products") {
+      if (location.pathname === "/contact") {
+        // On Contact page, navigate to /main-products
+        navigate("/main-products");
+      } else {
+        // Otherwise, scroll to #products section on home page
+        if (location.pathname !== "/") {
+          navigate("/", { replace: false });
+          setTimeout(() => {
+            const section = document.getElementById("products");
+            if (section) section.scrollIntoView({ behavior: "smooth" });
+          }, 100);
+        } else {
+          const section = document.getElementById("products");
+          if (section) section.scrollIntoView({ behavior: "smooth" });
         }
-      }, 100);
+      }
+    } else if (item.path === "/contact") {
+      navigate("/contact");
     } else {
-      const section = document.getElementById(item.id);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
+      // Default for other nav items - scroll or navigate
+      if (location.pathname !== "/") {
+        navigate("/", { replace: false });
+        setTimeout(() => {
+          const section = document.getElementById(item.id);
+          if (section) section.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        const section = document.getElementById(item.id);
+        if (section) section.scrollIntoView({ behavior: "smooth" });
       }
     }
   };
