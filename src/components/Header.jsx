@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Logo from "../assets/logo.png";
 
@@ -14,8 +14,25 @@ export default function Header() {
   const [isSticky, setSticky] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hoverStyle, setHoverStyle] = useState({
+    left: 0,
+    width: 0,
+    opacity: 0,
+  });
+
   const navigate = useNavigate();
   const location = useLocation();
+  const menuRef = useRef(null);
+
+  const handleMouseEnter = (e) => {
+    const li = e.currentTarget;
+    const { offsetLeft, offsetWidth } = li;
+    setHoverStyle({ left: offsetLeft, width: offsetWidth, opacity: 1 });
+  };
+
+  const handleMouseLeave = () => {
+    setHoverStyle((prev) => ({ ...prev, opacity: 0 }));
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,11 +59,9 @@ export default function Header() {
 
     window.addEventListener("scroll", handleScroll);
     handleScroll();
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname]);
 
-  // Lock scroll on mobile when menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.classList.add("overflow-hidden");
@@ -60,10 +75,8 @@ export default function Header() {
 
     if (item.id === "products") {
       if (location.pathname === "/contact") {
-        // On Contact page, navigate to /main-products
         navigate("/main-products");
       } else {
-        // Otherwise, scroll to #products section on home page
         if (location.pathname !== "/") {
           navigate("/", { replace: false });
           setTimeout(() => {
@@ -78,7 +91,6 @@ export default function Header() {
     } else if (item.path === "/contact") {
       navigate("/contact");
     } else {
-      // Default for other nav items - scroll or navigate
       if (location.pathname !== "/") {
         navigate("/", { replace: false });
         setTimeout(() => {
@@ -108,15 +120,31 @@ export default function Header() {
           </div>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex space-x-6 font-bold text-md">
+          <ul
+            className="relative hidden md:flex font-bold text-md"
+            ref={menuRef}
+            onMouseLeave={handleMouseLeave}
+          >
+            {/* Hover Background Effect */}
+            <span
+              className="absolute top-0 h-full bg-neutral-700/10 rounded-md transition-all duration-300 ease-in-out pointer-events-none"
+              style={{
+                left: hoverStyle.left,
+                width: hoverStyle.width,
+                opacity: hoverStyle.opacity,
+                zIndex: 0,
+              }}
+            />
+
             {navItems.map(({ id, label, path }) => (
               <li
                 key={id}
-                className={`cursor-pointer transition ${
+                className={`relative z-10 cursor-pointer px-4 py-1 transition-colors duration-200 ${
                   activeSection === id
                     ? "text-white"
                     : "text-neutral-400 hover:text-white"
                 }`}
+                onMouseEnter={handleMouseEnter}
                 onClick={() => scrollOrNavigate({ id, path })}
               >
                 {label}

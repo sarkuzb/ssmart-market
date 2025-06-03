@@ -180,7 +180,7 @@ export default function Products() {
                         </li>
                       </ul>
                       <button
-                        className="mt-4 sm:mt-6 bg-neutral-400 text-neutral-950 font-semibold py-2 px-4 rounded-lg hover:bg-white transition text-sm sm:text-base"
+                        className="mt-4 sm:mt-6 bg-neutral-400 text-neutral-950 font-semibold py-2 px-4 rounded-lg hover:bg-white transition text-sm sm:text-base cursor-pointer"
                         type="button"
                         style={{ flexShrink: 0 }}
                         onClick={() => navigate("/main-products")}

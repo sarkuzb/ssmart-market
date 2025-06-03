@@ -60,50 +60,44 @@ export default function Contact() {
           <div>
             <h2 className="font-semibold text-neutral-600">Общие вопросы</h2>
             <a
-              href="mailto:info@ssmartelectronics.com"
+              href="mailto:ssmartdukon@gmail.com"
               className="text-neutral-300 hover:underline hover:text-rose-500 transition-colors text-xl sm:text-2xl block"
             >
-              example@gmail.com
+              ssmartdukon@gmail.com
             </a>
           </div>
 
           <div>
             <h2 className="font-semibold text-neutral-600">
-              Вопросы сотрудничества в РФ
+              Вопросы сотрудничества
             </h2>
             <a
-              href="mailto:nelin.p@ssmartelectronics.com"
+              href="mailto:ssmartdukon@gmail.com"
               className="text-neutral-300 hover:underline hover:text-rose-500 transition-colors text-xl sm:text-2xl block"
             >
-              example@gmail.com
+              ssmartdukon@gmail.com
             </a>
           </div>
 
           <div>
             <h2 className="font-semibold text-neutral-600">Телефон:</h2>
             <a
-              href="tel:+998971063353"
+              href="tel:+998948080055"
               className="hover:underline block text-neutral-300 hover:text-rose-500 transition-colors text-xl sm:text-2xl"
             >
-              +000 00 000 00 00
-            </a>
-            <a
-              href="tel:+79936361766"
-              className="hover:underline block text-neutral-300 hover:text-rose-500 transition-colors text-xl sm:text-2xl"
-            >
-              +000 00 000 00 00
+              +998 94 808 00 55
             </a>
           </div>
 
           <div>
             <h2 className="font-semibold text-neutral-600">
-              Техническая поддержка в РФ
+              Техническая поддержка
             </h2>
             <a
-              href="mailto:servis@ssmartelectronics.com"
+              href="mailto:servis@ssmartdukon.com"
               className="text-neutral-300 hover:underline hover:text-rose-500 transition-colors text-xl sm:text-2xl block"
             >
-              servis@example.com
+              servis@ssmartdukon.com
             </a>
           </div>
         </div>
@@ -164,7 +158,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="bg-rose-900 text-white px-8 py-4 rounded hover:bg-rose-700 transition disabled:opacity-50"
+            className="bg-rose-900 text-white px-8 py-4 rounded hover:bg-rose-700 transition disabled:opacity-50 cursor-pointer"
           >
             {status === "loading" ? "Отправка..." : "Отправить"}
           </button>

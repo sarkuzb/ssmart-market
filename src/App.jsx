@@ -7,6 +7,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import MainProducts from "./components/MainProducts";
+import BackToTop from "./components/BackToTop";
 import "./index.css";
 
 function Home() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/main-products" element={<MainProducts />} />{" "}
       </Routes>
       <Footer />
+      <BackToTop />
     </div>
   );
 }
